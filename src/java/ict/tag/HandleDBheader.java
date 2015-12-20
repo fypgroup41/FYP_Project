@@ -38,4 +38,25 @@ public class HandleDBheader {
         return header;
     }
 
+    public String[] getActivitiesRecordBean() {
+        String[] header = new String[4];
+        header[0] = "Activities Record ID";
+        header[1] = "Activities ID";
+        header[2] = "Member ID";
+        header[3] = "State ";
+        return header;
+    }
+
+    public String[] getActivityBudgetBean() {
+        String[] header = new String[7];
+        header[0] = "Item ID";
+        header[1] = "Activities ID";
+        header[2] = "Item Name";
+        header[3] = "Item Type ";
+        header[4] = "Cost ";
+        header[5] = "Number ";
+        header[6] = "Remark ";
+
+        return header;
+    }
 }

@@ -6,6 +6,8 @@
 package ict.tag;
 
 import db.bean.ActivitiesBean;
+import db.bean.ActivitiesRecordBean;
+import db.bean.ActivityBudgetBean;
 import db.bean.AdminBean;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +40,6 @@ public class ExampleTag extends SimpleTagSupport {
                     data[1][i] = adminBean.get(i).getLogin_time();
                     data[2][i] = adminBean.get(i).getModify_time();
                 }
-
             }
             if (aryData.get(0) instanceof ActivitiesBean) {
                 ArrayList<ActivitiesBean> ActivitiesBean = aryData;
@@ -62,15 +63,48 @@ public class ExampleTag extends SimpleTagSupport {
                     data[13][i] = ActivitiesBean.get(i).getDescription();
                 }
             }
+
+            if (aryData.get(0) instanceof ActivitiesRecordBean) {
+                ArrayList<ActivitiesRecordBean> ActivitiesRecordBean = aryData;
+
+                header = handdb_header.getActivitiesRecordBean();
+                data = new String[header.length][ActivitiesRecordBean.size()];
+                for (int i = 0; i < ActivitiesRecordBean.size(); i++) {
+                    data[0][i] = String.valueOf(ActivitiesRecordBean.get(i).getActivitiesRecordID());
+                    data[1][i] = String.valueOf(ActivitiesRecordBean.get(i).getActivitiesID());
+                    data[2][i] = String.valueOf(ActivitiesRecordBean.get(i).getMemberID());
+                    data[3][i] = ActivitiesRecordBean.get(i).getState();
+                }
+
+            }
+
+            if (aryData.get(0) instanceof ActivityBudgetBean) {
+                ArrayList<ActivityBudgetBean> ActivityBudgetBean = aryData;
+
+                header = handdb_header.getActivityBudgetBean();
+                data = new String[header.length][ActivityBudgetBean.size()];
+                for (int i = 0; i < ActivityBudgetBean.size(); i++) {
+                    data[0][i] = String.valueOf(ActivityBudgetBean.get(i).getItemID());
+                    data[1][i] = String.valueOf(ActivityBudgetBean.get(i).getActivitiesID());
+                    data[2][i] = ActivityBudgetBean.get(i).getItemName();
+                    data[3][i] = ActivityBudgetBean.get(i).getItemType();
+                    data[4][i] = String.valueOf(ActivityBudgetBean.get(i).getCost());
+                    data[5][i] = String.valueOf(ActivityBudgetBean.get(i).getNumber());
+                    data[6][i] = ActivityBudgetBean.get(i).getRemark();
+                }
+
+            }
+
             showByTable(header, data);
+
         }
+
     }
 
     public void showByTable(String[] header, String[][] data) {
         try {
             PageContext pageContext = (PageContext) getJspContext();
             JspWriter out = pageContext.getOut();
-
             out.println("<table border=\"1\">");
             out.println("<tr>");
 

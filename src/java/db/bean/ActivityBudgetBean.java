@@ -5,22 +5,21 @@ package db.bean;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author test
  */
 public class ActivityBudgetBean {
 
-    String itemID;
-    String activitiesID;
+    int itemID;
+    int activitiesID;
     String itemName;
     String itemType;
-    String cost;
+    double cost;
     int number;
     String remark;
 
-    public ActivityBudgetBean(String itemID, String activitiesID, String itemName, String itemType, String cost, int number, String remark) {
+    public ActivityBudgetBean(int itemID, int activitiesID, String itemName, String itemType, double cost, int number, String remark) {
         this.itemID = itemID;
         this.activitiesID = activitiesID;
         this.itemName = itemName;
@@ -30,19 +29,19 @@ public class ActivityBudgetBean {
         this.remark = remark;
     }
 
-    public String getItemID() {
+    public int getItemID() {
         return itemID;
     }
 
-    public void setItemID(String itemID) {
+    public void setItemID(int itemID) {
         this.itemID = itemID;
     }
 
-    public String getActivitiesID() {
+    public int getActivitiesID() {
         return activitiesID;
     }
 
-    public void setActivitiesID(String activitiesID) {
+    public void setActivitiesID(int activitiesID) {
         this.activitiesID = activitiesID;
     }
 
@@ -62,11 +61,11 @@ public class ActivityBudgetBean {
         this.itemType = itemType;
     }
 
-    public String getCost() {
+    public double getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(int cost) {
         this.cost = cost;
     }
 
