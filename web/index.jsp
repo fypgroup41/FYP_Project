@@ -24,7 +24,7 @@
         <%
             DB_Select db_select = new DB_Select();
         %>
-        <ict2:showtable writer="<%=out%>" aryData="<%=db_select.getSql("select * from  activities")%>" header="activities" />
+        <ict2:showtable writer="<%=out%>" aryData="<%=db_select.getSql("select *  from  activities")%>" header="activities" />
         <ict2:showtable writer="<%=out%>" aryData="<%=db_select.getSql("select * from  activitiesrecord")%>" header="activitiesrecord" />
         <ict2:showtable writer="<%=out%>" aryData="<%=db_select.getSql("select * from  activitybudget")%>" header="activitybudget" />
         <ict2:showtable writer="<%=out%>" aryData="<%=db_select.getSql("select * from  activitytimetable")%>" header="activitytimetable" />
