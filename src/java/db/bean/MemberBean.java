@@ -12,8 +12,8 @@ package db.bean;
  */
 public class MemberBean {
 
-    int memberID;
-    int districtID;
+    String memberID;
+    String districtID;
     String nickName;
     String Birthday;
     String address;
@@ -24,7 +24,7 @@ public class MemberBean {
     String reg_date;
     int isHelper;
 
-    public MemberBean(int memberID, int districtID, String nickName, String Birthday, String address, String parent, String relationship, String emergency_phone, String school, String reg_date, int isHelper) {
+    public MemberBean(String memberID, String districtID, String nickName, String Birthday, String address, String parent, String relationship, String emergency_phone, String school, String reg_date, int isHelper) {
         this.memberID = memberID;
         this.districtID = districtID;
         this.nickName = nickName;
@@ -38,19 +38,19 @@ public class MemberBean {
         this.isHelper = isHelper;
     }
 
-    public int getMemberID() {
+    public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(String memberID) {
         this.memberID = memberID;
     }
 
-    public int getDistrictID() {
+    public String getDistrictID() {
         return districtID;
     }
 
-    public void setDistrictID(int districtID) {
+    public void setDistrictID(String districtID) {
         this.districtID = districtID;
     }
 

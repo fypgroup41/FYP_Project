@@ -87,14 +87,14 @@ public class DB_Select {
         if (bean.equals("activities")) {
             ActivitiesBean activities;
             while (rs.next()) {
-                activities = new ActivitiesBean(rs.getInt("activitiesID"), rs.getString("name"), rs.getInt("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getInt("staffID"), rs.getInt("sqID"), rs.getString("description"));
+                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getInt("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
                 list.add(activities);
             }
         }
         if (bean.equals("admin")) {
             AdminBean admin;
             while (rs.next()) {
-                admin = new AdminBean(rs.getInt("adminID"), rs.getString("login_time"), rs.getString("modify_time"), rs.getString("position"));
+                admin = new AdminBean(rs.getString("adminID"), rs.getString("login_time"), rs.getString("modify_time"), rs.getString("position"));
                 list.add(admin);
             }
         }
@@ -102,7 +102,7 @@ public class DB_Select {
         if (bean.equals("activitiesrecord")) {
             ActivitiesRecordBean activitiesRecord;
             while (rs.next()) {
-                activitiesRecord = new ActivitiesRecordBean(rs.getInt("activitiesRecordID"), rs.getInt("activitiesID"), rs.getInt("memberID"), rs.getString("state"));
+                activitiesRecord = new ActivitiesRecordBean(rs.getString("activitiesRecordID"), rs.getString("activitiesID"), rs.getString("memberID"), rs.getString("state"));
                 list.add(activitiesRecord);
             }
         }
@@ -110,7 +110,7 @@ public class DB_Select {
         if (bean.equals("activitybudget")) {
             ActivityBudgetBean activityBudget;
             while (rs.next()) {
-                activityBudget = new ActivityBudgetBean(rs.getInt("itemID"), rs.getInt("activitiesID"), rs.getString("itemName"), rs.getString("itemType"), rs.getDouble("cost"), rs.getInt("number"), rs.getString("remark"));
+                activityBudget = new ActivityBudgetBean(rs.getString("itemID"), rs.getString("activitiesID"), rs.getString("itemName"), rs.getString("itemType"), rs.getDouble("cost"), rs.getInt("number"), rs.getString("remark"));
                 list.add(activityBudget);
             }
         }

@@ -11,15 +11,15 @@ package db.bean;
  */
 public class ActivityBudgetBean {
 
-    int itemID;
-    int activitiesID;
+    String itemID;
+    String activitiesID;
     String itemName;
     String itemType;
     double cost;
     int number;
     String remark;
 
-    public ActivityBudgetBean(int itemID, int activitiesID, String itemName, String itemType, double cost, int number, String remark) {
+    public ActivityBudgetBean(String itemID, String activitiesID, String itemName, String itemType, double cost, int number, String remark) {
         this.itemID = itemID;
         this.activitiesID = activitiesID;
         this.itemName = itemName;
@@ -29,19 +29,19 @@ public class ActivityBudgetBean {
         this.remark = remark;
     }
 
-    public int getItemID() {
+    public String getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemID(String itemID) {
         this.itemID = itemID;
     }
 
-    public int getActivitiesID() {
+    public String getActivitiesID() {
         return activitiesID;
     }
 
-    public void setActivitiesID(int activitiesID) {
+    public void setActivitiesID(String activitiesID) {
         this.activitiesID = activitiesID;
     }
 

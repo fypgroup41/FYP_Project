@@ -12,8 +12,8 @@ package db.bean;
  */
 public class CommunityCenterBean {
 
-    int communityCenterID;
-    int districtID;
+    String communityCenterID;
+    String districtID;
     String name;
     String address;
     String tel;
@@ -21,7 +21,7 @@ public class CommunityCenterBean {
     String email;
     String info;
 
-    public CommunityCenterBean(int communityCenterID, int districtID, String name, String address, String tel, String fax, String email, String info) {
+    public CommunityCenterBean(String communityCenterID, String districtID, String name, String address, String tel, String fax, String email, String info) {
         this.communityCenterID = communityCenterID;
         this.districtID = districtID;
         this.name = name;
@@ -32,19 +32,19 @@ public class CommunityCenterBean {
         this.info = info;
     }
 
-    public int getCommunityCenterID() {
+    public String getCommunityCenterID() {
         return communityCenterID;
     }
 
-    public void setCommunityCenterID(int communityCenterID) {
+    public void setCommunityCenterID(String communityCenterID) {
         this.communityCenterID = communityCenterID;
     }
 
-    public int getDistrictID() {
+    public String getDistrictID() {
         return districtID;
     }
 
-    public void setDistrictID(int districtID) {
+    public void setDistrictID(String districtID) {
         this.districtID = districtID;
     }
 

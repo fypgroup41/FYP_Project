@@ -5,57 +5,46 @@ package db.bean;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author test
  */
 public class StaffBean {
 
-    int staffID;
-    int districtID;
-    int ccID;
-    int ccDistrictID;
+    String staffID;
+    String districtID;
+    String ccID;
     String position;
 
-    public StaffBean(int staffID, int districtID, int ccID, int ccDistrictID, String position) {
+    public StaffBean(String staffID, String districtID, String ccID, String position) {
         this.staffID = staffID;
         this.districtID = districtID;
         this.ccID = ccID;
-        this.ccDistrictID = ccDistrictID;
         this.position = position;
     }
 
-    public int getStaffID() {
+    public String getStaffID() {
         return staffID;
     }
 
-    public void setStaffID(int staffID) {
+    public void setStaffID(String staffID) {
         this.staffID = staffID;
     }
 
-    public int getDistrictID() {
+    public String getDistrictID() {
         return districtID;
     }
 
-    public void setDistrictID(int districtID) {
+    public void setDistrictID(String districtID) {
         this.districtID = districtID;
     }
 
-    public int getCcID() {
+    public String getCcID() {
         return ccID;
     }
 
-    public void setCcID(int ccID) {
+    public void setCcID(String ccID) {
         this.ccID = ccID;
-    }
-
-    public int getCcDistrictID() {
-        return ccDistrictID;
-    }
-
-    public void setCcDistrictID(int ccDistrictID) {
-        this.ccDistrictID = ccDistrictID;
     }
 
     public String getPosition() {

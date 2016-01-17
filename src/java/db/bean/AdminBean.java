@@ -12,23 +12,23 @@ package db.bean;
  */
 public class AdminBean {
 
-    int adminID;
+    String adminID;
     String login_time;
     String modify_time;
     String position;
 
-    public AdminBean(int adminID, String login_time, String modify_time, String position) {
+    public AdminBean(String adminID, String login_time, String modify_time, String position) {
         this.adminID = adminID;
         this.login_time = login_time;
         this.modify_time = modify_time;
         this.position = position;
     }
 
-    public int getAdminID() {
+    public String getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(int adminID) {
+    public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
 

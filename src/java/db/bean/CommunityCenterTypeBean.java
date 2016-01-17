@@ -12,21 +12,21 @@ package db.bean;
  */
 public class CommunityCenterTypeBean {
 
-    int communityCenterTypeID;
+    String communityCenterTypeID;
     String typeName;
     String description;
 
-    public CommunityCenterTypeBean(int communityCenterTypeID, String typeName, String description) {
+    public CommunityCenterTypeBean(String communityCenterTypeID, String typeName, String description) {
         this.communityCenterTypeID = communityCenterTypeID;
         this.typeName = typeName;
         this.description = description;
     }
 
-    public int getCommunityCenterTypeID() {
+    public String getCommunityCenterTypeID() {
         return communityCenterTypeID;
     }
 
-    public void setCommunityCenterTypeID(int communityCenterTypeID) {
+    public void setCommunityCenterTypeID(String communityCenterTypeID) {
         this.communityCenterTypeID = communityCenterTypeID;
     }
 

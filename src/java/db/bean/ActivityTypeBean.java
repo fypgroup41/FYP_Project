@@ -13,21 +13,21 @@ package db.bean;
  */
 public class ActivityTypeBean {
 
-    int activityTypeID;
+    String activityTypeID;
     String typeName;
     String description;
 
-    public ActivityTypeBean(int activityTypeID, String typeName, String description) {
+    public ActivityTypeBean(String activityTypeID, String typeName, String description) {
         this.activityTypeID = activityTypeID;
         this.typeName = typeName;
         this.description = description;
     }
 
-    public int getActivityTypeID() {
+    public String getActivityTypeID() {
         return activityTypeID;
     }
 
-    public void setActivityTypeID(int activityTypeID) {
+    public void setActivityTypeID(String activityTypeID) {
         this.activityTypeID = activityTypeID;
     }
 

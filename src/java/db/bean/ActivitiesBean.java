@@ -2,29 +2,29 @@ package db.bean;
 
 public class ActivitiesBean {
 
-    int activitiesID;
+    String activitiesID;
     String name;
     int districtNo;
     int quota;
     int remain;
     int targetAgeMax;
-    int tagerAgeMin;
+    int targetAgeMin;
     String deadline;
     String venue;
     String date;
     String tag;
-    int staffID;
-    int sqID;
+    String staffID;
+    String sqID;
     String description;
 
-    public ActivitiesBean(int activitiesID, String name, int districtNo, int quota, int remain, int targetAgeMax, int tagerAgeMin, String deadline, String venue, String date, String tag, int staffID, int sqID, String description) {
+    public ActivitiesBean(String activitiesID, String name, int districtNo, int quota, int remain, int targetAgeMax, int targetAgeMin, String deadline, String venue, String date, String tag, String staffID, String sqID, String description) {
         this.activitiesID = activitiesID;
         this.name = name;
         this.districtNo = districtNo;
         this.quota = quota;
         this.remain = remain;
         this.targetAgeMax = targetAgeMax;
-        this.tagerAgeMin = tagerAgeMin;
+        this.targetAgeMin = targetAgeMin;
         this.deadline = deadline;
         this.venue = venue;
         this.date = date;
@@ -34,11 +34,11 @@ public class ActivitiesBean {
         this.description = description;
     }
 
-    public int getActivitiesID() {
+    public String getActivitiesID() {
         return activitiesID;
     }
 
-    public void setActivitiesID(int activitiesID) {
+    public void setActivitiesID(String activitiesID) {
         this.activitiesID = activitiesID;
     }
 
@@ -82,12 +82,12 @@ public class ActivitiesBean {
         this.targetAgeMax = targetAgeMax;
     }
 
-    public int getTagerAgeMin() {
-        return tagerAgeMin;
+    public int getTargetAgeMin() {
+        return targetAgeMin;
     }
 
-    public void setTagerAgeMin(int tagerAgeMin) {
-        this.tagerAgeMin = tagerAgeMin;
+    public void setTargetAgeMin(int targetAgeMin) {
+        this.targetAgeMin = targetAgeMin;
     }
 
     public String getDeadline() {
@@ -122,19 +122,19 @@ public class ActivitiesBean {
         this.tag = tag;
     }
 
-    public int getStaffID() {
+    public String getStaffID() {
         return staffID;
     }
 
-    public void setStaffID(int staffID) {
+    public void setStaffID(String staffID) {
         this.staffID = staffID;
     }
 
-    public int getSqID() {
+    public String getSqID() {
         return sqID;
     }
 
-    public void setSqID(int sqID) {
+    public void setSqID(String sqID) {
         this.sqID = sqID;
     }
 

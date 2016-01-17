@@ -12,19 +12,19 @@ package db.bean;
  */
 public class SurveyqTypeBean {
 
-    int sQTypeID;
+    String sQTypeID;
     String name;
 
-    public SurveyqTypeBean(int sQTypeID, String name) {
+    public SurveyqTypeBean(String sQTypeID, String name) {
         this.sQTypeID = sQTypeID;
         this.name = name;
     }
 
-    public int getsQTypeID() {
+    public String getsQTypeID() {
         return sQTypeID;
     }
 
-    public void setsQTypeID(int sQTypeID) {
+    public void setsQTypeID(String sQTypeID) {
         this.sQTypeID = sQTypeID;
     }
 

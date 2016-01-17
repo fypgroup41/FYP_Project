@@ -12,27 +12,27 @@ package db.bean;
  */
 public class Atype_ABean {
 
-    int activityTypeID;
-    int activitiesID;
+    String activityTypeID;
+    String activitiesID;
 
-    public Atype_ABean(int activityTypeID, int activitiesID) {
+    public Atype_ABean(String activityTypeID, String activitiesID) {
         this.activityTypeID = activityTypeID;
         this.activitiesID = activitiesID;
     }
 
-    public int getActivityTypeID() {
+    public String getActivityTypeID() {
         return activityTypeID;
     }
 
-    public void setActivityTypeID(int activityTypeID) {
+    public void setActivityTypeID(String activityTypeID) {
         this.activityTypeID = activityTypeID;
     }
 
-    public int getActivitiesID() {
+    public String getActivitiesID() {
         return activitiesID;
     }
 
-    public void setActivitiesID(int activitiesID) {
+    public void setActivitiesID(String activitiesID) {
         this.activitiesID = activitiesID;
     }
 

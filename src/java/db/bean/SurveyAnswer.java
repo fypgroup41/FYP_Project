@@ -5,20 +5,19 @@ package db.bean;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author test
  */
 public class SurveyAnswer {
 
-    int saID;
+    String saID;
     String answer;
-    int sqID;
-    int memberID;
-    int userID;
+    String sqID;
+    String memberID;
+    String userID;
 
-    public SurveyAnswer(int saID, String answer, int sqID, int memberID, int userID) {
+    public SurveyAnswer(String saID, String answer, String sqID, String memberID, String userID) {
         this.saID = saID;
         this.answer = answer;
         this.sqID = sqID;
@@ -26,11 +25,11 @@ public class SurveyAnswer {
         this.userID = userID;
     }
 
-    public int getSaID() {
+    public String getSaID() {
         return saID;
     }
 
-    public void setSaID(int saID) {
+    public void setSaID(String saID) {
         this.saID = saID;
     }
 
@@ -42,28 +41,27 @@ public class SurveyAnswer {
         this.answer = answer;
     }
 
-    public int getSqID() {
+    public String getSqID() {
         return sqID;
     }
 
-    public void setSqID(int sqID) {
+    public void setSqID(String sqID) {
         this.sqID = sqID;
     }
 
-    public int getMemberID() {
+    public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(String memberID) {
         this.memberID = memberID;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
-
 }

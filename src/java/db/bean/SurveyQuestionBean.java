@@ -12,13 +12,13 @@ package db.bean;
  */
 public class SurveyQuestionBean {
 
-    int sqID;
+    String sqID;
     String question;
     int qTypeID;
     int maxMark;
     int minMark;
 
-    public SurveyQuestionBean(int sqID, String question, int qTypeID, int maxMark, int minMark) {
+    public SurveyQuestionBean(String sqID, String question, int qTypeID, int maxMark, int minMark) {
         this.sqID = sqID;
         this.question = question;
         this.qTypeID = qTypeID;
@@ -26,11 +26,11 @@ public class SurveyQuestionBean {
         this.minMark = minMark;
     }
 
-    public int getSqID() {
+    public String getSqID() {
         return sqID;
     }
 
-    public void setSqID(int sqID) {
+    public void setSqID(String sqID) {
         this.sqID = sqID;
     }
 

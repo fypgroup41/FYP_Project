@@ -12,13 +12,13 @@ package db.bean;
  */
 public class ActivityTimetableBean {
 
-    int activityTimeTableID;
-    int Activities_activitiesID;
+    String activityTimeTableID;
+    String Activities_activitiesID;
     String detail;
     String startTime;
     String finish;
 
-    public ActivityTimetableBean(int activityTimeTableID, int Activities_activitiesID, String detail, String startTime, String finish) {
+    public ActivityTimetableBean(String activityTimeTableID, String Activities_activitiesID, String detail, String startTime, String finish) {
         this.activityTimeTableID = activityTimeTableID;
         this.Activities_activitiesID = Activities_activitiesID;
         this.detail = detail;
@@ -26,19 +26,19 @@ public class ActivityTimetableBean {
         this.finish = finish;
     }
 
-    public int getActivityTimeTableID() {
+    public String getActivityTimeTableID() {
         return activityTimeTableID;
     }
 
-    public void setActivityTimeTableID(int activityTimeTableID) {
+    public void setActivityTimeTableID(String activityTimeTableID) {
         this.activityTimeTableID = activityTimeTableID;
     }
 
-    public int getActivities_activitiesID() {
+    public String getActivities_activitiesID() {
         return Activities_activitiesID;
     }
 
-    public void setActivities_activitiesID(int Activities_activitiesID) {
+    public void setActivities_activitiesID(String Activities_activitiesID) {
         this.Activities_activitiesID = Activities_activitiesID;
     }
 

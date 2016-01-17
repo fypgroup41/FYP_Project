@@ -5,30 +5,27 @@ package db.bean;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author test
  */
 public class DistrictBean {
 
-    int districtID;
+    String districtID;
     String name;
-    int prev;
-    int next;
+    String beside;
 
-    public DistrictBean(int districtID, String name, int prev, int next) {
+    public DistrictBean(String districtID, String name, String beside) {
         this.districtID = districtID;
         this.name = name;
-        this.prev = prev;
-        this.next = next;
+        this.beside = beside;
     }
 
-    public int getDistrictID() {
+    public String getDistrictID() {
         return districtID;
     }
 
-    public void setDistrictID(int districtID) {
+    public void setDistrictID(String districtID) {
         this.districtID = districtID;
     }
 
@@ -40,20 +37,12 @@ public class DistrictBean {
         this.name = name;
     }
 
-    public int getPrev() {
-        return prev;
+    public String getBeside() {
+        return beside;
     }
 
-    public void setPrev(int prev) {
-        this.prev = prev;
-    }
-
-    public int getNext() {
-        return next;
-    }
-
-    public void setNext(int next) {
-        this.next = next;
+    public void setBeside(String beside) {
+        this.beside = beside;
     }
 
 }

@@ -5,19 +5,18 @@ package db.bean;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author test
  */
 public class UserBean {
 
-    int userID;
+    String userID;
     String userName;
     String password;
-    int memberID;
-    int adminID;
-    int staffID;
+    String memberID;
+    String adminID;
+    String staffID;
     String firstName_eng;
     String lastName_eng;
     String sex;
@@ -26,7 +25,7 @@ public class UserBean {
     String email;
     int isAuthenticated;
 
-    public UserBean(int userID, String userName, String password, int memberID, int adminID, int staffID, String firstName_eng, String lastName_eng, String sex, String tel, String name_ch, String email, int isAuthenticated) {
+    public UserBean(String userID, String userName, String password, String memberID, String adminID, String staffID, String firstName_eng, String lastName_eng, String sex, String tel, String name_ch, String email, int isAuthenticated) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
@@ -42,11 +41,11 @@ public class UserBean {
         this.isAuthenticated = isAuthenticated;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -66,27 +65,27 @@ public class UserBean {
         this.password = password;
     }
 
-    public int getMemberID() {
+    public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(String memberID) {
         this.memberID = memberID;
     }
 
-    public int getAdminID() {
+    public String getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(int adminID) {
+    public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
 
-    public int getStaffID() {
+    public String getStaffID() {
         return staffID;
     }
 
-    public void setStaffID(int staffID) {
+    public void setStaffID(String staffID) {
         this.staffID = staffID;
     }
 
@@ -145,5 +144,4 @@ public class UserBean {
     public void setIsAuthenticated(int isAuthenticated) {
         this.isAuthenticated = isAuthenticated;
     }
-
 }

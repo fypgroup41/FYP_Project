@@ -12,27 +12,27 @@ package db.bean;
  */
 public class CCtype_CCBean {
 
-    int ccTypeID;
-    int ccID;
+    String ccTypeID;
+    String ccID;
 
-    public CCtype_CCBean(int ccTypeID, int ccID) {
+    public CCtype_CCBean(String ccTypeID, String ccID) {
         this.ccTypeID = ccTypeID;
         this.ccID = ccID;
     }
 
-    public int getCcTypeID() {
+    public String getCcTypeID() {
         return ccTypeID;
     }
 
-    public void setCcTypeID(int ccTypeID) {
+    public void setCcTypeID(String ccTypeID) {
         this.ccTypeID = ccTypeID;
     }
 
-    public int getCcID() {
+    public String getCcID() {
         return ccID;
     }
 
-    public void setCcID(int ccID) {
+    public void setCcID(String ccID) {
         this.ccID = ccID;
     }
 

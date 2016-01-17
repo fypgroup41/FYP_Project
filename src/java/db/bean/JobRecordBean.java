@@ -12,37 +12,37 @@ package db.bean;
  */
 public class JobRecordBean {
 
-    int jobID;
-    int activitiesID;
-    int memberID;
+    String jobID;
+    String activitiesID;
+    String memberID;
 
-    public JobRecordBean(int jobID, int activitiesID, int memberID) {
+    public JobRecordBean(String jobID, String activitiesID, String memberID) {
         this.jobID = jobID;
         this.activitiesID = activitiesID;
         this.memberID = memberID;
     }
 
-    public int getJobID() {
+    public String getJobID() {
         return jobID;
     }
 
-    public void setJobID(int jobID) {
+    public void setJobID(String jobID) {
         this.jobID = jobID;
     }
 
-    public int getActivitiesID() {
+    public String getActivitiesID() {
         return activitiesID;
     }
 
-    public void setActivitiesID(int activitiesID) {
+    public void setActivitiesID(String activitiesID) {
         this.activitiesID = activitiesID;
     }
 
-    public int getMemberID() {
+    public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(String memberID) {
         this.memberID = memberID;
     }
 
