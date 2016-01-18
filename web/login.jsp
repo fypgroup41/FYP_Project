@@ -7,8 +7,15 @@
                 url: "login",
                 data: "username=" + $("#username").val() + "&password=" + $("#password").val(),
                 success: function (data) {
+                    var obj = jQuery.parseJSON(data);
+                    if (obj.status === "success") {
+                        $("#user_status").html(obj.username);
+                    } else {
+                        $("#user_status").html("User name or password is incorrect");
+                    }
 
-                    alert(data + "");
+                    $("#loginForm").css("visibility", "hidden");
+
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);

@@ -82,7 +82,7 @@
         <div class="header">
             <div id="Left">
                 <h1>Activities Booking Website System</h1>
-
+                <div id="user_status"></div>
 
             </div>
             <div id="Center">
