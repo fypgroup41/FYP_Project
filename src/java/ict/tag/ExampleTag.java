@@ -30,7 +30,8 @@ public class ExampleTag extends SimpleTagSupport {
         JspWriter out = pageContext.getOut();
         String[] header = null;
         String[][] data = null;
-        if (aryData != null) {
+        /*
+if (aryData != null) {
             if (aryData.get(0) instanceof AdminBean) {
                 ArrayList<AdminBean> adminBean = aryData;
                 header = handdb_header.getAdminBean();
@@ -98,7 +99,7 @@ public class ExampleTag extends SimpleTagSupport {
             showByTable(header, data);
 
         }
-
+         */
     }
 
     public void showByTable(String[] header, String[][] data) {

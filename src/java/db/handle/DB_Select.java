@@ -161,7 +161,7 @@ public class DB_Select {
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();
             rs.last();
-            temp = new String[rs.getRow()+1][columnCount];
+            temp = new String[rs.getRow() + 1][columnCount];
             Logger _log = Logger.getLogger(DB_Select.class.getName());
             rs.beforeFirst();
             for (int i = 0; i < columnCount; i++) {
@@ -171,7 +171,7 @@ public class DB_Select {
             while (rs.next()) {
                 count++;
                 for (int j = 0; j < temp[0].length; j++) {
-                    temp[count][j] = rs.getString(j+1);
+                    temp[count][j] = rs.getString(j + 1);
                 }
             }
             pStmnt.close();
