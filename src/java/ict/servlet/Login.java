@@ -10,6 +10,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import net.sf.json.*;
 
 /**
  *
@@ -36,15 +37,54 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            response.setContentType("text/html;charset=UTF-8");
-            request.setCharacterEncoding("UTF-8");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            request.setAttribute("data", db.getSql("select * from user where userID=\"" + username + "\"  and password=\"" + password + "\" "));
-            RequestDispatcher rd;
+            PrintWriter out = response.getWriter();
+            JSONObject json = new JSONObject();
+            String[][] data = null;
+
+            data = db.getSql("select * from user where username=\"" + username + "\"  and password=\"" + password + "\" ");
+
+            if (data.length == 1) {
+                //Fout.println("User name or password is incorrect");
+                json.put("status", "fail");
+            } else {
+                //out.println("Login Success");
+                json.put("status", "success");
+            }
+
+            response.setContentType("text/html;charset=UTF-8");
+
+            json.put("username", username);
+            json.put("password", password);
+
+            out.println(json);
+
+            /*  response.setContentType("application/json");
+            request.setCharacterEncoding("UTF-8");
+            JSONArray jArray = new JSONArray();
+            
+
+            JSONObject arrayObj = new JSONObject();
+            arrayObj.put("username", "A");
+            arrayObj.put("password", "B");
+
+            jArray.add(0, arrayObj);
+            PrintWriter out = response.getWriter();
+            out.print(jArray);*/
+ /*  response.setContentType("text/html;charset=UTF-8");
+            //      
+      
+
+        
+
+          
+            request.setAttribute("data", data);
+             */
+ /*RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/main.jsp");
-            rd.forward(request, response);
-        } catch (ServletException | IOException ex) {
+            rd.forward(request, response);*/
+        } catch (Exception ex) {
             PrintWriter out = response.getWriter();
             out.println(ex.getMessage());
         }
