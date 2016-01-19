@@ -5,12 +5,12 @@
  */
 package ict.servlet;
 
+import db.bean.UserBean;
 import db.handle.DB_Select;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import net.sf.json.*;
 
 /**
  *
@@ -21,73 +21,110 @@ public class Login extends HttpServlet {
 
     private DB_Select db;
 
-    public void init() {
-        String dbUser = this.getServletContext().getInitParameter("dbUsername");
-        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
-        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
-        db = new DB_Select(dbUrl, dbUser, dbPassword);
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String dbUser = this.getServletContext().getInitParameter("dbUsername");
+        String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+        String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+        db = new DB_Select(dbUrl, dbUser, dbPassword);
+        
+        
         try {
-            response.setContentType("application/json");
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
             PrintWriter out = response.getWriter();
-            JSONObject json = new JSONObject();
-            String[][] data = null;
 
-            data = db.getSql("select * from user where username=\"" + username + "\"  and password=\"" + password + "\" ");
+            String action = request.getParameter("action");
 
-            if (data.length == 1) {
-                //Fout.println("User name or password is incorrect");
-                json.put("status", "fail");
-            } else {
-                //out.println("Login Success");
-                json.put("status", "success");
+            if (!isAuthenticated(request)
+                    && !("authenticate".equals(action))) {
+                doLogin(request, response);
+                return;
+            }
+            switch (action) {
+                case "authenticate":
+                    doAuthenticate(request, response);
+                    break;
+                case "logout":
+                    doLogout(request, response);
+                    return;
+                default:
+                    response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
+                    break;
             }
 
-            response.setContentType("text/html;charset=UTF-8");
-
-            json.put("username", username);
-            json.put("password", password);
-
-            out.println(json);
-
-            /*  response.setContentType("application/json");
-            request.setCharacterEncoding("UTF-8");
-            JSONArray jArray = new JSONArray();
-            
-
-            JSONObject arrayObj = new JSONObject();
-            arrayObj.put("username", "A");
-            arrayObj.put("password", "B");
-
-            jArray.add(0, arrayObj);
-            PrintWriter out = response.getWriter();
-            out.print(jArray);*/
- /*  response.setContentType("text/html;charset=UTF-8");
-            //      
-      
-
-        
-
-          
-            request.setAttribute("data", data);
-             */
- /*RequestDispatcher rd;
+            RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/main.jsp");
-            rd.forward(request, response);*/
+            rd.forward(request, response);
         } catch (Exception ex) {
             PrintWriter out = response.getWriter();
             out.println(ex.getMessage());
+        }
+    }
+
+    private boolean isAuthenticated(HttpServletRequest request) {
+        boolean result = false;
+        HttpSession session = request.getSession();
+        if (session.getAttribute("userInfo") != null) {
+            result = true;
+        }
+        return result;
+    }
+
+    private void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String targetURL = "/main.jsp";
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/" + targetURL);
+        rd.forward(request, response);
+    }
+
+    private void doLogout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.removeAttribute("userInfo");
+            session.invalidate();
+        }
+        doLogin(request, response);
+    }
+
+    private void doAuthenticate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        try {
+
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String targetURL;
+            boolean isValid = db.isValidUser(username, password);
+            if (isValid) {
+                HttpSession session;
+                session = request.getSession(true);
+                session.setAttribute("userInfo", db.queryUserByUsername(username));
+
+                if (session.getAttribute("userInfo") != null) {
+                    UserBean user = (UserBean) session.getAttribute("userInfo");
+                    if (user.getMemberID() != null) {
+                        session.setAttribute("userTypeLevel", "member");
+                        session.setAttribute("userName", username);
+                    }
+                    if (user.getStaffID() != null) {
+                        session.setAttribute("userTypeLevel", "staff");
+                        session.setAttribute("userTypeID", user.getStaffID());
+                        session.setAttribute("userName", username);
+                    }
+                }
+
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/main.jsp");
+                rd.forward(request, response);
+            } else {
+                PrintWriter out = response.getWriter();
+                out.println("Login Fail! Prease try again");
+            }
+        } catch (Exception ex) {
+            PrintWriter out = response.getWriter();
+            out.println("Login Fail! Prease try again" + ex.getMessage());
         }
     }
 

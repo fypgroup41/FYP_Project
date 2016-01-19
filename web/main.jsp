@@ -1,3 +1,4 @@
+<%@page import="db.bean.UserBean"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,14 +9,13 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
         <script>
             $(document).ready(function () {
                 $("#login").click(function () {
                     $("#closeButton").css("visibility", "visible");
                     $("#indexLog").css("visibility", "visible");
                     $("#closeButton").load("login.jsp");
-                    //$("#closeButton").append("<button id=\"close\">Close</button>");
+
                 });
                 $("#register").click(function () {
                     $("#closeButton").css("visibility", "visible");
@@ -24,6 +24,9 @@
                 $("#close").click(function () {
                     $("#closeButton").css("visibility", "hidden");
                     $("#indexLog").css("visibility", "hidden");
+                });
+                $("#activities").click(function () {
+                    $("#contentPage").load("Generaluser_regform.jsp");
                 });
 
 
@@ -48,71 +51,70 @@
     </head>
     <body >
 
-        <%
 
-            if (request.getAttribute("data") != null) {
-
-                String[][] aryData = (String[][]) request.getAttribute("data");
-
-                if (aryData.length == 1) {%>
-        <div class="alert alert-warning">
-            <strong>Login Message</strong> User name or password is incorrect
-        </div>
-        <%
-
-                } else {
-
-                    out.write("<table border=\"1\">");
-                    for (int i = 0; i < aryData.length; i++) {
-
-                        if (i == 0) {
-                            for (int j = 0; j < aryData[0].length; j++) {
-                                out.write("<th>" + aryData[i][j] + "</th>");
-                            }
-                        } else {
-                            for (int j = 0; j < aryData[0].length; j++) {
-                                out.write("<td>" + aryData[i][j] + "</td>");
-                            }
-                        }
-                        out.write("</tr>");
-                    }
-                }
-            }
-        %>
 
         <div class="header"  style="background-color: green">
             <div id="Left" style="display:initine">
                 <img src="img/banner.jpg" style="width:100px;height:100px">
-                <img src="img/banner.jpg" style="width:800px;height:100px;margin-left:105px">
+
 
                 <div id="user_status"></div>
 
             </div>
             <div id="Center">
             </div>
-            <div id="Right">
+            <%
+                if (session.getAttribute("userInfo") == null) {%>
+
+            <div id="Right" style="position:absolute;top:5px;right:0px">
+                <button  id="login" >Login</button>
+                <button id="register">Register</button>
+            </div>
+            <%
+
+            } else {
+            %>
+
+            <div id="Right" style="position:absolute;top:5px;right:0px">
+                <i class="fa fa-user fa-2x"  style="cursor:pointer" >
+                    <%
+                        if (session.getAttribute("userInfo") != null) {
+                            UserBean user = (UserBean) session.getAttribute("userInfo");
+                            out.println("" + session.getAttribute("userName"));
+                        }
+                    %>
+                    <i class="fa fa-sign-out fa-2x" style="cursor:pointer" onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>login?action=logout'"></i>
+                </i>
+
+
+
 
             </div>
+
+            <%
+                }
+            %>
+
+
         </div>
 
-        <div class="row">
+        <div class="row" style="height:100%">
 
             <div class="col-1 menu">
                 <ul>
-                    <li><center>Activities</center></li>
-                    <li><center>News</center></li>
-                    <li><center>Sharing Wall</center></li>
+                    <li id="activities"><center>Activities</center></li>
+                    <li id="news"><center>News</center></li>
+                    <li id="wall"><center>Sharing Wall</center></li>
                 </ul>
             </div>
 
-            <div class="col-9" style="background-color: yellow">
+            <div class="col-9" id="contentPage" style="background-color: yellow;height:100%;overflow: scroll">
                 <div class="content">
 
                     <h1>Main Content</h1>
                     <p>Maybe set iframe to change content</p>
 
-                    <button  id="login" >Login</button>
-                    <button id="register">Register</button>
+
                 </div>
             </div>
             <div class="col-2 right">
@@ -141,5 +143,8 @@
         <div id="closeButton">
 
         </div>
+
+
+        <jsp:include page="/footer.jsp"/>
     </body>
 </html>

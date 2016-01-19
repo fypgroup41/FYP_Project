@@ -1,3 +1,9 @@
+
+html, body {
+    height: 100%;
+}
+
+
 .regform {
     margin-left:auto;
     margin-right:auto;
@@ -33,7 +39,7 @@
 
 .regform label {
     display: block;
-    margin: 0px 0px 5px;
+    margin: 15px 5px 5px 5px;
 }
 .regform label>span {
     float: left;
@@ -186,7 +192,7 @@ html {
 
 .header button{
     background-color:#9CCC65;
-    padding: 10px 25px 10px 25px;
+
     border-radius: 5px;
     -webkit-border-radius: 5px;
     color: #FFF;
@@ -219,5 +225,9 @@ html {
     text-align: center;
     z-index: 11; /* 1px higher than the overlay layer */
     visibility: hidden;
+}
+
+.regform label>input[type="checkbox"], input[type="radio"] {
+    margin: 5px 5px 5px 5px;
 }
 
