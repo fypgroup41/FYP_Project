@@ -91,7 +91,7 @@ public class DB_Select {
         if (bean.equals("activities")) {
             ActivitiesBean activities;
             while (rs.next()) {
-                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getInt("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
+                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
                 list.add(activities);
             }
         }
@@ -312,7 +312,7 @@ public class DB_Select {
         return newAvaildID + "";
     }
 
-    public boolean addGeneralUser_User(String availdID,String userName, String password, String availMemberID, String givenName, String surName, String gender, String tel, String chinese, String email, int isAuthenticated) throws ParseException, IOException {
+    public boolean addGeneralUser_User(String availdID, String userName, String password, String availMemberID, String givenName, String surName, String gender, String tel, String chinese, String email, int isAuthenticated) throws ParseException, IOException {
         PreparedStatement pStmnt = null;
         Connection cnnct = null;
         boolean isSuccess = false;
@@ -413,6 +413,37 @@ public class DB_Select {
         }
         return isSuccess;
 
+    }
+
+    public ArrayList queryActivitiesBySql(String sql) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList list = new ArrayList();
+        ActivitiesBean activities;
+        try {
+
+            ResultSet rs = null;
+            cnnct = getConnection();
+            String preQueryStatement = sql;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date").substring(0, rs.getString("date").length() - 2), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
+                list.add(activities);
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 
 }

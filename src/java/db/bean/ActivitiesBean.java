@@ -4,7 +4,7 @@ public class ActivitiesBean {
 
     String activitiesID;
     String name;
-    int districtNo;
+    String districtNo;
     int quota;
     int remain;
     int targetAgeMax;
@@ -17,7 +17,7 @@ public class ActivitiesBean {
     String sqID;
     String description;
 
-    public ActivitiesBean(String activitiesID, String name, int districtNo, int quota, int remain, int targetAgeMax, int targetAgeMin, String deadline, String venue, String date, String tag, String staffID, String sqID, String description) {
+    public ActivitiesBean(String activitiesID, String name, String districtNo, int quota, int remain, int targetAgeMax, int targetAgeMin, String deadline, String venue, String date, String tag, String staffID, String sqID, String description) {
         this.activitiesID = activitiesID;
         this.name = name;
         this.districtNo = districtNo;
@@ -50,11 +50,11 @@ public class ActivitiesBean {
         this.name = name;
     }
 
-    public int getDistrictNo() {
+    public String getDistrictNo() {
         return districtNo;
     }
 
-    public void setDistrictNo(int districtNo) {
+    public void setDistrictNo(String districtNo) {
         this.districtNo = districtNo;
     }
 

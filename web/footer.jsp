@@ -9,8 +9,7 @@
 </script>
 <div style="overflow: scroll;width:100%;display: block">
     <br><br>
-    <p align="center"><a href="sitmap.jsp">Site Map</a>&nbsp;|&nbsp;<a href="index.jsp">Home Page</a>&nbsp;|&nbsp;<a href="help.jsp">Help</a></p>
-    <p align="center">© 1996-2015, stationery_online_station.com, Inc. or its affiliates</p>
+  
 </div>
 
 <div id="log_status" style="overflow: scroll;width:50%;height:300px;background-color:Lavender;float:left;">

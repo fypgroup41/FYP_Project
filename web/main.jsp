@@ -1,7 +1,18 @@
+<%@page import="db.handle.DB_Select"%>
 <%@page import="db.bean.UserBean"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <%@ taglib uri="/WEB-INF/tlds/ict-taglib2.tld" prefix="ict2" %>
+
+        <%
+            String dbUser = this.getServletContext().getInitParameter("dbUsername");
+            String dbPassword = this.getServletContext().getInitParameter("dbPassword");
+            String dbUrl = this.getServletContext().getInitParameter("dbUrl");
+            DB_Select db_select = new DB_Select(dbUrl, dbUser, dbPassword);
+
+
+        %>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/formcss.css">
 
@@ -25,10 +36,13 @@
                     $("#closeButton").css("visibility", "hidden");
                     $("#indexLog").css("visibility", "hidden");
                 });
-                $("#activities").click(function () {
+                $("#register").click(function () {
                     $("#contentPage").load("Generaluser_regform.jsp");
                 });
 
+                $("#activities").click(function () {
+                    $("#contentPage").load("activities.jsp");
+                });
 
 
             });
@@ -53,9 +67,10 @@
 
 
 
+
         <div class="header"  style="background-color: green">
             <div id="Left" style="display:initine">
-                <img src="img/banner.jpg" style="width:100px;height:100px">
+                <img src="img/banner.jpg" style="width:100px;height:100px;cursor: pointer"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">
 
 
                 <div id="user_status"></div>
@@ -64,7 +79,7 @@
             <div id="Center">
             </div>
             <%
-                if (session.getAttribute("userInfo") == null) {%>
+            if (session.getAttribute("userInfo") == null) {%>
 
             <div id="Right" style="position:absolute;top:5px;right:0px">
                 <button  id="login" >Login</button>
@@ -102,13 +117,13 @@
 
             <div class="col-1 menu">
                 <ul>
-                    <li id="activities"><center>Activities</center></li>
+                    <li id="activities" style="cursor: pointer"><center>Activities</center></li>
                     <li id="news"><center>News</center></li>
                     <li id="wall"><center>Sharing Wall</center></li>
                 </ul>
             </div>
 
-            <div class="col-9" id="contentPage" style="background-color: yellow;height:100%;overflow: scroll">
+            <div class="col-9" id="contentPage" style="background-color: Cornsilk  ;height:100%;overflow: scroll">
                 <div class="content">
 
                     <h1>Main Content</h1>

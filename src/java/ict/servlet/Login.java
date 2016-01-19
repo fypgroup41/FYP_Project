@@ -16,7 +16,7 @@ import javax.servlet.http.*;
  *
  * @author user
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
+
 public class Login extends HttpServlet {
 
     private DB_Select db;
@@ -32,8 +32,7 @@ public class Login extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new DB_Select(dbUrl, dbUser, dbPassword);
-        
-        
+
         try {
             PrintWriter out = response.getWriter();
 
@@ -75,10 +74,8 @@ public class Login extends HttpServlet {
     }
 
     private void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String targetURL = "/main.jsp";
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/" + targetURL);
-        rd.forward(request, response);
+
+        response.sendRedirect(request.getContextPath() + ("/main.jsp"));
     }
 
     private void doLogout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
