@@ -32,7 +32,7 @@
                         }
                 );
                 $('#hover-cap-4col .thumbnail').click(function () {
-            <%--$('#myModal').find(".modal-body").html("Added A Product into Your Cart");
+            <%--$('#myModal').find(".modal-body").html("Added this Activity in your timetable");
             $("#myModal").modal(); --%>
                     $(".alert").css("display", "block");
                 });
@@ -99,7 +99,7 @@
             <button type="button" class="close"  >
                 <span>&times;</span>
             </button>
-            <strong>Product</strong> This products Added
+            <strong>Activity</strong> Added this Activity in your timetable
         </div>
 
         <!-- Modal -->

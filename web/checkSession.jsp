@@ -1,4 +1,3 @@
-<%-- 
 
 <%@page import="java.net.InetAddress"%>
 <%@page import="java.util.Enumeration"%>
@@ -26,4 +25,3 @@ Last time of activity <%=new Date(session.getLastAccessedTime())%>
         out.println(key + ": " + session.getValue(key) + "<br>");
     }%>
 
---%>

@@ -16,7 +16,6 @@ import javax.servlet.http.*;
  *
  * @author user
  */
-
 public class Login extends HttpServlet {
 
     private DB_Select db;
@@ -32,12 +31,9 @@ public class Login extends HttpServlet {
         String dbPassword = this.getServletContext().getInitParameter("dbPassword");
         String dbUrl = this.getServletContext().getInitParameter("dbUrl");
         db = new DB_Select(dbUrl, dbUser, dbPassword);
-
         try {
             PrintWriter out = response.getWriter();
-
             String action = request.getParameter("action");
-
             if (!isAuthenticated(request)
                     && !("authenticate".equals(action))) {
                 doLogin(request, response);
@@ -54,9 +50,8 @@ public class Login extends HttpServlet {
                     response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED);
                     break;
             }
-
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/main.jsp");
+            rd = getServletContext().getRequestDispatcher("/errorLogin.jsp");
             rd.forward(request, response);
         } catch (Exception ex) {
             PrintWriter out = response.getWriter();
@@ -116,8 +111,10 @@ public class Login extends HttpServlet {
                 rd = getServletContext().getRequestDispatcher("/main.jsp");
                 rd.forward(request, response);
             } else {
-                PrintWriter out = response.getWriter();
-                out.println("Login Fail! Prease try again");
+                 RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/errorLogin.jsp");
+                rd.forward(request, response);
+
             }
         } catch (Exception ex) {
             PrintWriter out = response.getWriter();

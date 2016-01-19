@@ -67,10 +67,23 @@
 
 
 
+        <%            if (request.getAttribute("status") != null) {
+                if (request.getAttribute("status").equals("fail")) {
+        %>     
 
+        <script>
+            alert("User name or password is incorrect");
+            document.getElementById("closeButton").style.visibility = "visible";
+            document.getElementById("indexLog").style.visibility = "visible";
+            document.getElementById("closeButton").style.visibility = "visible";
+        </script>
+        <%
+                }
+            }
+        %>
         <div class="header"  style="background-color: green">
             <div id="Left" style="display:initine">
-                <img src="img/banner.jpg" style="width:100px;height:100px;cursor: pointer"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">
+                <img src="img/logo.jpg" style="width:100px;height:100px;cursor: pointer"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">
 
 
                 <div id="user_status"></div>
@@ -79,7 +92,7 @@
             <div id="Center">
             </div>
             <%
-            if (session.getAttribute("userInfo") == null) {%>
+                if (session.getAttribute("userInfo") == null) {%>
 
             <div id="Right" style="position:absolute;top:5px;right:0px">
                 <button  id="login" >Login</button>
