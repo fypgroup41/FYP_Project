@@ -9,7 +9,7 @@
                 success: function (data) {
                     var obj = jQuery.parseJSON(data);
                     if (obj.status === "success") {
-                        $("#user_status").html(obj.username);
+                        $("#user_status").html("<i class=\"fa fa-user\"></i>"+obj.username);
                     } else {
                         $("#user_status").html("User name or password is incorrect");
                     }

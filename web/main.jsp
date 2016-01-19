@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <script>
             $(document).ready(function () {
@@ -79,40 +80,58 @@
             }
         %>
 
-        <div class="header">
-            <div id="Left">
-                <h1>Activities Booking Website System</h1>
+        <div class="header"  style="background-color: green">
+            <div id="Left" style="display:initine">
+                <img src="img/banner.jpg" style="width:100px;height:100px">
+                <img src="img/banner.jpg" style="width:800px;height:100px;margin-left:105px">
+
                 <div id="user_status"></div>
 
             </div>
             <div id="Center">
             </div>
             <div id="Right">
-                <button  id="login" >Login</button>
-                <button id="register">Register</button>
+
             </div>
         </div>
 
         <div class="row">
 
-            <div class="col-3 menu">
+            <div class="col-1 menu">
                 <ul>
-                    <li>Activities</li>
-                    <li>News</li>
-                    <li>Sharing Wall</li>
+                    <li><center>Activities</center></li>
+                    <li><center>News</center></li>
+                    <li><center>Sharing Wall</center></li>
                 </ul>
             </div>
 
-            <div class="col-6">
+            <div class="col-9" style="background-color: yellow">
                 <div class="content">
 
                     <h1>Main Content</h1>
                     <p>Maybe set iframe to change content</p>
+
+                    <button  id="login" >Login</button>
+                    <button id="register">Register</button>
                 </div>
             </div>
-            <div class="col-3 right">
+            <div class="col-2 right">
                 <div class="aside">
-                    Testing 
+                    <center>Sharing on Swimming Lessons (2015-11-12)</center>
+                    <center> <i class="fa fa-camera-retro fa-5x"></i></center>
+                    <div>Jade Art hold a Swimming Lesson on 2015-11-15.Most of the participats learn how to swimming..........<a href="">Click here</a> </div>
+
+
+                    <hr>
+                    <center>Sharing on Swimming Lessons (2015-11-12)</center>
+                    <center> <i class="fa fa-camera-retro fa-5x"></i></center>
+                    <div>Jade Art hold a Swimming Lesson on 2015-11-15.Most of the participats learn how to swimming..........<a href="">Click here</a> </div>
+
+                    <hr>
+                    <center>Sharing on Swimming Lessons (2015-11-12)</center>
+                    <center> <i class="fa fa-camera-retro fa-5x"></i></center>
+                    <div>Jade Art hold a Swimming Lesson on 2015-11-15.Most of the participats learn how to swimming..........<a href="">Click here</a> </div>
+
                 </div>
             </div>
         </div>
