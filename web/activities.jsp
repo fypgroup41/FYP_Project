@@ -35,6 +35,10 @@
             <%--$('#myModal').find(".modal-body").html("Added this Activity in your timetable");
             $("#myModal").modal(); --%>
                     $(".alert").css("display", "block");
+                    
+                    $("#closeButton").css("visibility", "visible");
+                    $("#indexLog").css("visibility", "visible");
+                    $("#closeButton").load("activityDetails.jsp");
                 });
                 $('.close').click(function () {
                     $(".alert").css("display", "none");
