@@ -34,13 +34,13 @@
         <h1>Activity Record</h1>
         <table>
             <tr>
-                <th>Activity Record ID</th>
-                <th>Activity ID</th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Venue</th>
-                <th>Person in charge</th>
-                <th>State</th>
+                <th>Activity Record ID&nbsp;</th>
+                <th>Activity ID&nbsp;</th>
+                <th>Name&nbsp;</th>
+                <th>Date&nbsp;</th>
+                <th>Venue&nbsp;</th>
+                <th>Person in charge&nbsp;</th>
+                <th>State&nbsp;</th>
             </tr>
             <%
                 for (int i = 0; i < aryData.size(); i++) {

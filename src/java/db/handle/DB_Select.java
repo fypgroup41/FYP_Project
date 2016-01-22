@@ -91,7 +91,7 @@ public class DB_Select {
         if (bean.equals("activities")) {
             ActivitiesBean activities;
             while (rs.next()) {
-                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
+                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date"), rs.getString("tag"), rs.getString("staffID"), rs.getString("description"));
                 list.add(activities);
             }
         }
@@ -429,7 +429,7 @@ public class DB_Select {
 
             rs = pStmnt.executeQuery();
             while (rs.next()) {
-                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date").substring(0, rs.getString("date").length() - 2), rs.getString("tag"), rs.getString("staffID"), rs.getString("sqID"), rs.getString("description"));
+                activities = new ActivitiesBean(rs.getString("activitiesID"), rs.getString("name"), rs.getString("districtNo"), rs.getInt("quota"), rs.getInt("remain"), rs.getInt("targetAgeMax"), rs.getInt("targetAgeMin"), rs.getString("deadline"), rs.getString("venue"), rs.getString("date").substring(0, rs.getString("date").length() - 2), rs.getString("tag"), rs.getString("staffID"), rs.getString("description"));
                 list.add(activities);
             }
             pStmnt.close();
@@ -570,6 +570,54 @@ public class DB_Select {
             }
         }
 
+        return isSuccess;
+    }
+    
+    public boolean editMemberRecord(String mid, String pw
+            , String nickname, String tel, String email, String address
+            , String parent, String eTel, String relation, String school) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        PreparedStatement pStmnt2 = null;
+        boolean isSuccess = false;
+
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE user SET"+
+                    " tel=?, email=? WHERE memberID=?";
+            String preQueryStatement2 = "UPDATE member SET"+
+                    " nickName=?, address=?, parent=?, relationship=?,emergency_phone=?, school=? WHERE memberID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt2 = cnnct.prepareStatement(preQueryStatement2);
+            pStmnt.setString(1, tel);
+            pStmnt.setString(2, email);
+            pStmnt.setString(3, mid);
+            pStmnt2.setString(1, nickname);
+            pStmnt2.setString(2, address);
+            pStmnt2.setString(3, parent);
+            pStmnt2.setString(4, relation);
+            pStmnt2.setString(5, school);
+            pStmnt2.setString(6, mid);
+            int rowCount = pStmnt.executeUpdate();
+            int rowCount2 = pStmnt2.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            if (rowCount2 >= 1) {
+                isSuccess = true;
+            }
+
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         return isSuccess;
     }
 

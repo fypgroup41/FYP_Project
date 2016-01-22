@@ -15,7 +15,6 @@
     String dbUrl = this.getServletContext().getInitParameter("dbUrl");
     DB_Select db_select = new DB_Select(dbUrl, dbUser, dbPassword);
 %>
-<%@ taglib uri="/WEB-INF/tlds/ict-taglib2.tld" prefix="ict2" %>
 <%
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     ArrayList aryData = db_select.queryActivitiesBySql("SELECT * FROM activities"

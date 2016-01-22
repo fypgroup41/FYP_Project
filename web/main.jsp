@@ -43,9 +43,12 @@
                 $("#activities").click(function () {
                     $("#contentPage").load("activities.jsp");
                 });
-                
+
                 $("#actRec").click(function () {
                     $("#contentPage").load("userActivityRecord.jsp");
+                });
+                $("#memberset").click(function () {
+                    $("#contentPage").load("memberSeting.jsp");
                 });
 
 
@@ -138,6 +141,7 @@
                     <li id="news"><center>News</center></li>
                     <li id="wall"><center>Sharing Wall</center></li>
                     <li id="actRec"><center>Activity Record</center></li>
+                    <li id="memberset"><center>Seting</center></li>
                 </ul>
             </div>
 

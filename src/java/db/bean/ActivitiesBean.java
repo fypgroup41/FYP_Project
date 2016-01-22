@@ -14,10 +14,9 @@ public class ActivitiesBean {
     String date;
     String tag;
     String staffID;
-    String sqID;
     String description;
 
-    public ActivitiesBean(String activitiesID, String name, String districtNo, int quota, int remain, int targetAgeMax, int targetAgeMin, String deadline, String venue, String date, String tag, String staffID, String sqID, String description) {
+    public ActivitiesBean(String activitiesID, String name, String districtNo, int quota, int remain, int targetAgeMax, int targetAgeMin, String deadline, String venue, String date, String tag, String staffID,  String description) {
         this.activitiesID = activitiesID;
         this.name = name;
         this.districtNo = districtNo;
@@ -30,7 +29,7 @@ public class ActivitiesBean {
         this.date = date;
         this.tag = tag;
         this.staffID = staffID;
-        this.sqID = sqID;
+        
         this.description = description;
     }
 
@@ -130,13 +129,7 @@ public class ActivitiesBean {
         this.staffID = staffID;
     }
 
-    public String getSqID() {
-        return sqID;
-    }
 
-    public void setSqID(String sqID) {
-        this.sqID = sqID;
-    }
 
     public String getDescription() {
         return description;
