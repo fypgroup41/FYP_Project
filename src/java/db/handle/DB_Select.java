@@ -445,5 +445,101 @@ public class DB_Select {
         }
         return list;
     }
+    
+    public ArrayList queryActivitiesRecordBySql(String sql) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList list = new ArrayList();
+        ActivitiesRecordBean ar;
+        try {
+
+            ResultSet rs = null;
+            cnnct = getConnection();
+            String preQueryStatement = sql;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                ar = new ActivitiesRecordBean(rs.getString("activitiesRecordID"), rs.getString("activitiesID"), rs.getString("memberID"), rs.getString("state"));
+                list.add(ar);
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+    
+    public ArrayList queryUserBySql(String sql) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList list = new ArrayList();
+        UserBean user;
+        try {
+
+            ResultSet rs = null;
+            cnnct = getConnection();
+            String preQueryStatement = sql;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                user = new UserBean(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("memberID"), rs.getString("adminID"), rs.getString("staffID"), rs.getString("firstName_eng"), rs.getString("lastName_eng"), rs.getString("sex"), rs.getString("tel"), rs.getString("name_ch"), rs.getString("email"), rs.getInt("isAuthenticated"));
+                list.add(user);
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+    
+    public boolean addActivitiesRecord(String activitiesRecordID, String activitiesID, String memberID, String state) throws ParseException, IOException {
+        PreparedStatement pStmnt = null;
+        Connection cnnct = null;
+        boolean isSuccess = false;
+        Logger _log = Logger.getLogger("addActivitiesRecord");
+        try {
+            
+            String preQueryStatement = "INSERT INTO activitiesrecord VALUES (?,?,?,?)";
+            cnnct = getConnection();
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, activitiesRecordID);
+            pStmnt.setString(2, activitiesID);
+            pStmnt.setString(3, memberID);
+            pStmnt.setString(4, state);
+            _log.log(Level.INFO, "addActivitiesRecord{0}", " " + pStmnt.toString());
+
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+
+            }
+        }
+
+        return isSuccess;
+    }
 
 }

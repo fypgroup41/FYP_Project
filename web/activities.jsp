@@ -35,10 +35,10 @@
             <%--$('#myModal').find(".modal-body").html("Added this Activity in your timetable");
             $("#myModal").modal(); --%>
                     $(".alert").css("display", "block");
-                    
+                    id = $(this).attr('id');
                     $("#closeButton").css("visibility", "visible");
                     $("#indexLog").css("visibility", "visible");
-                    $("#closeButton").load("activityDetails.jsp");
+                    $("#closeButton").load("activityDetails.jsp?id="+id);
                 });
                 $('.close').click(function () {
                     $(".alert").css("display", "none");
@@ -84,7 +84,7 @@
                 top:50%;
                 left:50%;
                 margin: 0 auto;
-                z-index: 2000;
+                z-index: 10;
                 transform: translate(-50%, -50%);
             }
             #hover-cap-4col .thumbnail {
@@ -137,18 +137,20 @@
 
 
         %>
-
+        <h1>Activity</h1>
+        
+            
+        </div>
         <%           
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             ArrayList aryData = db_select.queryActivitiesBySql("SELECT * FROM activities");
             for (int i = 0; i < aryData.size(); i++) {
                 ActivitiesBean act = (ActivitiesBean) aryData.get(i);
-
         %>
 
 
         <ul class="thumbnails" id="hover-cap-4col" class="tableShow" >
-            <div class="thumbnail">
+            <div class="thumbnail" id="<%= act.getActivitiesID() %>">
                 <div class="caption">
                     <i class="fa fa-info fa-3x"></i>
 
