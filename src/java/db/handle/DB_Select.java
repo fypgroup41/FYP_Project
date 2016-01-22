@@ -9,6 +9,7 @@ import db.bean.ActivitiesBean;
 import db.bean.ActivitiesRecordBean;
 import db.bean.ActivityBudgetBean;
 import db.bean.AdminBean;
+import db.bean.MemberBean;
 import db.bean.UserBean;
 
 import java.io.IOException;
@@ -21,7 +22,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -493,6 +493,37 @@ public class DB_Select {
             while (rs.next()) {
                 user = new UserBean(rs.getString("userID"), rs.getString("userName"), rs.getString("password"), rs.getString("memberID"), rs.getString("adminID"), rs.getString("staffID"), rs.getString("firstName_eng"), rs.getString("lastName_eng"), rs.getString("sex"), rs.getString("tel"), rs.getString("name_ch"), rs.getString("email"), rs.getInt("isAuthenticated"));
                 list.add(user);
+            }
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return list;
+    }
+    
+    public ArrayList queryMemberBySql(String sql) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        ArrayList list = new ArrayList();
+        MemberBean member;
+        try {
+
+            ResultSet rs = null;
+            cnnct = getConnection();
+            String preQueryStatement = sql;
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+
+            rs = pStmnt.executeQuery();
+            while (rs.next()) {
+                member = new MemberBean(rs.getString("memberID"), rs.getString("districtID"), rs.getString("nickName"), rs.getString("birthday"), rs.getString("address"), rs.getString("parent"), rs.getString("relationship"), rs.getString("emergency_phone"), rs.getString("school"), rs.getString("reg_date"), rs.getInt("isHelper"));
+                list.add(member);
             }
             pStmnt.close();
             cnnct.close();

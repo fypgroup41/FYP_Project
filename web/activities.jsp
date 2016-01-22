@@ -38,7 +38,7 @@
                     id = $(this).attr('id');
                     $("#closeButton").css("visibility", "visible");
                     $("#indexLog").css("visibility", "visible");
-                    $("#closeButton").load("activityDetails.jsp?id="+id);
+                    $("#closeButton").load("activityDetails.jsp?id=" + id);
                 });
                 $('.close').click(function () {
                     $(".alert").css("display", "none");
@@ -138,42 +138,42 @@
 
         %>
         <h1>Activity</h1>
-        
-            
-        </div>
-        <%           
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            ArrayList aryData = db_select.queryActivitiesBySql("SELECT * FROM activities");
-            for (int i = 0; i < aryData.size(); i++) {
-                ActivitiesBean act = (ActivitiesBean) aryData.get(i);
-        %>
 
 
-        <ul class="thumbnails" id="hover-cap-4col" class="tableShow" >
-            <div class="thumbnail" id="<%= act.getActivitiesID() %>">
-                <div class="caption">
-                    <i class="fa fa-info fa-3x"></i>
-
-                </div>
-
-
-                <%                    String dateInString = act.getDate();
-                    Date date = sdf.parse(dateInString);
-                %>
-                <div style="background-color:yellow;text-align:center" id="A"><img src="img/activities/<%= act.getActivitiesID()%>.jpg" class="photo" title="<%= act.getName()%>"></img>
+    </div>
+    <%            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        ArrayList aryData = db_select.queryActivitiesBySql("SELECT * FROM activities");
+        for (int i = 0; i < aryData.size(); i++) {
+            ActivitiesBean act = (ActivitiesBean) aryData.get(i);
+    %>
 
 
-                    <br><span style="text-align:center"><%= act.getName()%></span><br> <span style="text-align:center;color:red;font-size:large"><%= sdf.format(date)%></div>
+    <ul class="thumbnails" id="hover-cap-4col" class="tableShow" >
+        <div class="thumbnail" id="<%= act.getActivitiesID()%>">
+            <div class="caption">
+                <i class="fa fa-info fa-3x"></i>
 
             </div>
-        </li>     
-    </ul>          
+
+
+            <%
+                String dateInString = act.getDate();
+                Date date = sdf.parse(dateInString);
+            %>
+            <div style="background-color:yellow;text-align:center" id="A"><img src="img/activities/<%= act.getActivitiesID()%>.jpg" class="photo" title="<%= act.getName()%>"></img>
+
+
+                <br><span style="text-align:center"><%= act.getName()%></span><br> <span style="text-align:center;color:red;font-size:large"><%= sdf.format(date)%></div>
+
+        </div>
+    </li>     
+</ul>          
 
 
 
-    <%   }
+<%   }
 
-    %>
+%>
 
 
 

@@ -1,5 +1,8 @@
 
 <%@page import="db.bean.ActivitiesBean"%>
+<%@page import="db.bean.MemberBean"%>
+<%@page import="db.bean.ActivitiesRecordBean"%>
+<%@page import="ict.calculate.DateCalculate"%>
 <%@page import="db.bean.UserBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="db.handle.DB_Select"%>
@@ -17,7 +20,6 @@
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     ArrayList aryData = db_select.queryActivitiesBySql("SELECT * FROM activities"
             + " where activitiesID = '" + request.getParameter("id") + "'");
-
 
 %>
 <script>
@@ -107,20 +109,99 @@
         </table>
 
     </center>
+    <script>
+
+        $("#join").click(function () {
+        <%
+            if (session.getAttribute("userInfo") != null) {
+                UserBean userM = (UserBean) session.getAttribute("userInfo");
+                if (userM.getMemberID() != null) {
+                    DateCalculate dc = new DateCalculate();
+                    ArrayList memberData = db_select.queryMemberBySql("SELECT * FROM member"
+                            + " where memberID = '" + userM.getMemberID() + "'");
+                    MemberBean member = (MemberBean) memberData.get(0);
+                    try {
+                        SimpleDateFormat sdfbd = new SimpleDateFormat("yyyy-MM-dd");
+                        String bate = member.getBirthday();
+                        Date bd = sdfbd.parse(bate);
+                        Date runDate = sdfbd.parse(act.getDate());
+                        int age = dc.calculateAge(bd);
+                        int ckMamberActDate = 1;
+
+                        ArrayList memberRecData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord where memberID='" + userM.getMemberID() + "'");
+                        if (memberRecData.size() > 0) {
+                            for (int x = 0; x < memberRecData.size() - 1; x++) {
+                                ActivitiesRecordBean mbActRec = (ActivitiesRecordBean) memberRecData.get(i);
+                                ArrayList ckActDate = db_select.queryActivitiesBySql("SELECT * FROM activities where date >= '" + sdfbd.format(runDate)
+                                        + " 00:00:00' AND date <= '" + sdfbd.format(runDate) + " 23:59:59' and activitiesID='" + mbActRec.getActivitiesID() + "'");
+                                %>
+            alert("1+<%=ckActDate.size() %>+<%=mbActRec.getActivitiesID() %>" );
+        <%
+                                if (ckActDate.size() > 0) {
+                                    ckMamberActDate = 1;
+                                    %>
+            alert("2");
+        <%
+                                    break;
+                                } else {
+                                    ckMamberActDate = 0;
+                                    %>
+            alert("3");
+        <%
+                                }
+                            }
+                        } else {
+                            ckMamberActDate = 0;
+                            %>
+            alert("4");
+        <%
+                        }
+
+                        if (ckMamberActDate == 0) {
+                            if (age >= act.getTargetAgeMin() && age <= act.getTargetAgeMax()) {
+                                String arID = "";
+                                String aID = act.getActivitiesID();
+                                String mbID = userM.getMemberID();
+                                String state = "not confirm";
+                                ArrayList acrRecData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord");
+                                ActivitiesRecordBean actRec = (ActivitiesRecordBean) acrRecData.get(acrRecData.size() - 1);
+                                arID = (Integer.parseInt(actRec.getActivitiesRecordID()) + 1) + "";
+                                if (db_select.addActivitiesRecord(arID, aID, mbID, state)) {
+        %>
+            alert("Activity is joined.");
+        <%
+            }
+        } else {
+        %>
+            alert("Your age dose not match the requirement!");
+        <%
+            }
+        } else {
+        %>
+            alert("You have activities on this day.");
+        <%
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else {
+        %>
+            alert("You is not member!");
+        <%
+            }
+
+        } else {
+        %>
+            alert("Please Login!");
+        <%
+            }
+        %>
+        });
+    </script>
     <%
         }
     %>
 </div>
-<script>
-    $(function () {
-        $("#join").click(function () {
-    <% if (session.getAttribute("userInfo") != null) {
-                    UserBean user = (UserBean) session.getAttribute("userInfo");
-                    if (user.getMemberID() != null) {
-                        user.getMemberID();
-                    }
-                }
-    %>
-        }
-    });
-</script>
+
