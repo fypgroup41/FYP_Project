@@ -130,43 +130,40 @@
 
                         ArrayList memberRecData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord where memberID='" + userM.getMemberID() + "'");
                         if (memberRecData.size() > 0) {
-                            for (int x = 0; x < memberRecData.size() - 1; x++) {
-                                ActivitiesRecordBean mbActRec = (ActivitiesRecordBean) memberRecData.get(i);
+                            
+                            for (int x = 0; x < memberRecData.size(); x++) {
+                                
+                                ActivitiesRecordBean mbActRec = (ActivitiesRecordBean) memberRecData.get(x);
+                                String sqlStr = "SELECT * FROM activities where date >= '" + sdfbd.format(runDate)
+                                        + " 00:00:00' AND date <= '" + sdfbd.format(runDate) + " 23:59:59' and activitiesID='" + mbActRec.getActivitiesID() + "'";
                                 ArrayList ckActDate = db_select.queryActivitiesBySql("SELECT * FROM activities where date >= '" + sdfbd.format(runDate)
                                         + " 00:00:00' AND date <= '" + sdfbd.format(runDate) + " 23:59:59' and activitiesID='" + mbActRec.getActivitiesID() + "'");
-                                %>
-            alert("1+<%=ckActDate.size() %>+<%=mbActRec.getActivitiesID() %>" );
-        <%
-                                if (ckActDate.size() > 0) {
-                                    ckMamberActDate = 1;
-                                    %>
-            alert("2");
-        <%
-                                    break;
-                                } else {
-                                    ckMamberActDate = 0;
-                                    %>
-            alert("3");
-        <%
-                                }
-                            }
-                        } else {
-                            ckMamberActDate = 0;
-                            %>
-            alert("4");
-        <%
-                        }
+        
+            if (ckActDate.size() > 0) {
+                ckMamberActDate = 1;
+        
+            break;
+        } else {
+            ckMamberActDate = 0;
+        
+                }
+            }
+        } else {
+            ckMamberActDate = 0;
+        
+            }
 
-                        if (ckMamberActDate == 0) {
-                            if (age >= act.getTargetAgeMin() && age <= act.getTargetAgeMax()) {
-                                String arID = "";
-                                String aID = act.getActivitiesID();
-                                String mbID = userM.getMemberID();
-                                String state = "not confirm";
-                                ArrayList acrRecData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord");
-                                ActivitiesRecordBean actRec = (ActivitiesRecordBean) acrRecData.get(acrRecData.size() - 1);
-                                arID = (Integer.parseInt(actRec.getActivitiesRecordID()) + 1) + "";
-                                if (db_select.addActivitiesRecord(arID, aID, mbID, state)) {
+            if (ckMamberActDate == 0) {
+                if (age >= act.getTargetAgeMin() && age <= act.getTargetAgeMax()) {
+                    String arID = "";
+                    String aID = act.getActivitiesID();
+                    String mbID = userM.getMemberID();
+                    String state = "not confirm";
+                    ArrayList acrRecData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord");
+                    ActivitiesRecordBean actRec = (ActivitiesRecordBean) acrRecData.get(acrRecData.size() - 1);
+                    arID = (Integer.parseInt(actRec.getActivitiesRecordID()) + 1) + "";
+                    
+                    if (db_select.addActivitiesRecord(arID, aID, mbID, state)) {
         %>
             alert("Activity is joined.");
         <%
@@ -203,5 +200,7 @@
     <%
         }
     %>
+    
+    
 </div>
 
