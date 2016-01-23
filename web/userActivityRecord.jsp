@@ -28,8 +28,11 @@
         %>
         <%
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            ArrayList aryData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord"
-                    + " where memberID = '1'");
+            if (session.getAttribute("userInfo") != null) {
+                UserBean userM = (UserBean) session.getAttribute("userInfo");
+                if (userM.getUserID() != null) {
+                    ArrayList aryData = db_select.queryActivitiesRecordBySql("SELECT * FROM activitiesrecord"
+                            + " where memberID = '" + userM.getUserID() + "'");
         %>
         <h1>Activity Record</h1>
         <table>
@@ -46,10 +49,10 @@
                 for (int i = 0; i < aryData.size(); i++) {
                     ActivitiesRecordBean ar = (ActivitiesRecordBean) aryData.get(i);
                     ArrayList actData = db_select.queryActivitiesBySql("SELECT * FROM activities"
-                            + " where activitiesID = '" + ar.getActivitiesID()+"'");
+                            + " where activitiesID = '" + ar.getActivitiesID() + "'");
                     ActivitiesBean act = (ActivitiesBean) actData.get(0);
                     ArrayList staffData = db_select.queryUserBySql("SELECT * FROM user"
-                            + " where staffID = '" + act.getStaffID()+"'");
+                            + " where staffID = '" + act.getStaffID() + "'");
                     UserBean user = (UserBean) staffData.get(0);
             %>
             <tr>
@@ -62,7 +65,7 @@
                 %>
                 <td><%= sdf.format(date)%></td>
                 <td><%= act.getVenue()%></td>
-                <td><%= user.getFirstName_eng() %> <%= user.getLastName_eng() %></td>
+                <td><%= user.getFirstName_eng()%> <%= user.getLastName_eng()%></td>
                 <td><%= ar.getState()%></td>
             </tr>
             <%
@@ -71,6 +74,11 @@
 
 
         </table>
-
+        <%
+                }
+            } else {
+                out.print("Please login!");
+            }
+        %>
     </body>
 </html>

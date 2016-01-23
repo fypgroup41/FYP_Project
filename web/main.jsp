@@ -20,6 +20,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+      
         <script>
             $(document).ready(function () {
                 $("#login").click(function () {
@@ -48,7 +50,7 @@
                     $("#contentPage").load("userActivityRecord.jsp");
                 });
                 $("#memberset").click(function () {
-                    $("#contentPage").load("memberSeting.jsp");
+                    $("#contentPage").load("memberSettings.jsp");
                 });
 
 
@@ -70,7 +72,7 @@
             }
         </script>--%>
     </head>
-    <body >
+    <body style="height: 100%; width: 100%;">
 
 
 
@@ -88,7 +90,7 @@
                 }
             }
         %>
-        <div class="header"  style="background-color: green">
+      <%--  <div class="header"  style="background-color: green">
             <div id="Left" style="display:initine">
                 <img src="img/logo.jpg" style="width:100px;height:100px;cursor: pointer"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">
 
@@ -131,11 +133,47 @@
             %>
 
 
+        </div>--%>
+        
+        <div id="Rheader">
+                <ul style="height:62px;list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: #ff4d4d;">
+                   <li>&nbsp;<img src="img/logo.png" style="height:60px;cursor: pointer; left:10px;"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">&nbsp;</li>
+                    <li id="activities"><a href="#news">activities</a></li> 
+                   <li id="news"><a href="#news">News</a></li>
+                    <li id="wall"><a href="#contact">Sharing Wall</a></li>
+                    <li id="actRec"><a href="#contact">Activity Record</a></li>
+                    <li id="memberset"><a href="#contact">Settings</a></li>
+                    <ul style="float:right;list-style-type:none;">
+ <%
+                if (session.getAttribute("userInfo") == null) {
+ %>                        
+                      <li id="register">Register</li>
+                      <li id="login">Login&nbsp;</li>
+                    </ul>
+                  </ul>
         </div>
+  <%
+
+            } else {
+            %>
+                                     
+                      <li> <%
+                        if (session.getAttribute("userInfo") != null) {
+                            UserBean user = (UserBean) session.getAttribute("userInfo");
+                            out.println("" + session.getAttribute("userName"));
+                        }
+                    %></li>
+                      <li class="fa fa-sign-out fa-2x" style="cursor:pointer" onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>login?action=logout'"></li>
+                    </ul>
+                  </ul>
+        </div>
+                <%
+                 }
+                %>      
 
         <div class="row" style="height:100%">
 
-            <div class="col-1 menu">
+          <%--  <div class="col-1 menu">
                 <ul>
                     <li id="activities" style="cursor: pointer"><center>Activities</center></li>
                     <li id="news"><center>News</center></li>
@@ -153,7 +191,17 @@
 
 
                 </div>
+            </div>--%>
+          <div class="col-9" id="contentPage" style="background-color: Cornsilk;  padding: 75px 18% 50px 50px;">
+                <div class="content">
+
+                    <h1>Main Content</h1>
+                    <p>Maybe set iframe to change content</p>
+
+
+                </div>
             </div>
+          
             <div class="col-2 right">
                 <div class="aside">
                     <center>Sharing on Swimming Lessons (2015-11-12)</center>
@@ -181,7 +229,7 @@
 
         </div>
 
-
-        <jsp:include page="/footer.jsp"/>
+        <div id="closebackground" style="background-color: black ; width:100%; height:200%; z-index:7000; position:absolute ; left: 0px; top: 0px; opacity: 0.2; visibility: hidden;">sdvgvsd &nbsp;</div>
+          <%--<jsp:include page="/footer.jsp"/>--%>
     </body>
 </html>

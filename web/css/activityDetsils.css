@@ -1,0 +1,20 @@
+#details{
+    z-index:9999;
+top:-160px;
+left:50%;
+position:fixed;
+width:590px;
+height: 340px;
+margin-left: -290px;
+background-color: white;
+overflow:scroll;
+border-radius:7px;
+padding:10px 10px;
+box-shadow: 0 0 20px rgba(0,0,0,0.4);
+ text-decoration: none; 
+
+
+
+    
+    
+}

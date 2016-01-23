@@ -573,40 +573,88 @@ public class DB_Select {
         return isSuccess;
     }
     
-    public boolean editMemberRecord(String mid, String pw
-            , String nickname, String tel, String email, String address
-            , String parent, String eTel, String relation, String school) {
+    public boolean editMemberRecordForUser(String mid, String tel, String email) {
         Connection cnnct = null;
         PreparedStatement pStmnt = null;
-        PreparedStatement pStmnt2 = null;
         boolean isSuccess = false;
 
         try {
             cnnct = getConnection();
             String preQueryStatement = "UPDATE user SET"+
                     " tel=?, email=? WHERE memberID=?";
-            String preQueryStatement2 = "UPDATE member SET"+
-                    " nickName=?, address=?, parent=?, relationship=?,emergency_phone=?, school=? WHERE memberID=?";
             pStmnt = cnnct.prepareStatement(preQueryStatement);
-            pStmnt2 = cnnct.prepareStatement(preQueryStatement2);
             pStmnt.setString(1, tel);
             pStmnt.setString(2, email);
             pStmnt.setString(3, mid);
-            pStmnt2.setString(1, nickname);
-            pStmnt2.setString(2, address);
-            pStmnt2.setString(3, parent);
-            pStmnt2.setString(4, relation);
-            pStmnt2.setString(5, school);
-            pStmnt2.setString(6, mid);
             int rowCount = pStmnt.executeUpdate();
-            int rowCount2 = pStmnt2.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
             }
-            if (rowCount2 >= 1) {
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    public boolean editMemberRecordForMember(String mid, String nickname, String address
+            , String parent, String relation,String eTel , String school) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE member SET"+
+                    " nickName=?, address=?, parent=?, relationship=?,emergency_phone=?, school=? WHERE memberID=?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, nickname);
+            pStmnt.setString(2, address);
+            pStmnt.setString(3, parent);
+            pStmnt.setString(4, relation);
+            pStmnt.setString(5, eTel);
+            pStmnt.setString(6, school);
+            pStmnt.setString(7, mid);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
                 isSuccess = true;
             }
 
+            pStmnt.close();
+            cnnct.close();
+
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return isSuccess;
+    }
+    
+    public boolean editMemberRecordForPw(String mid, String pw) {
+        Connection cnnct = null;
+        PreparedStatement pStmnt = null;
+        boolean isSuccess = false;
+
+        try {
+            cnnct = getConnection();
+            String preQueryStatement = "UPDATE user SET password = ? WHERE memberID = ?";
+            pStmnt = cnnct.prepareStatement(preQueryStatement);
+            pStmnt.setString(1, pw);
+            pStmnt.setString(2, mid);
+            int rowCount = pStmnt.executeUpdate();
+            if (rowCount >= 1) {
+                isSuccess = true;
+            }
             pStmnt.close();
             cnnct.close();
 

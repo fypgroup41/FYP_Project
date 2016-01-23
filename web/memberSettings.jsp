@@ -55,7 +55,7 @@
                 </tr>
                 <div id="cfmpwin">
                     <tr>
-                        <th> Password: &nbsp; </th>
+                        <th> Confirm Password: &nbsp; </th>
                         <td> <input type = "password" name = "cfmpw" pattern = ".{8,}" id = "cfmpw" > </td>
                     </tr>
                 </div>

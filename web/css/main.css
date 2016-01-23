@@ -1,0 +1,52 @@
+#Rheader {
+    z-index:999999;
+position:fixed;
+height:66px;
+width:100%;
+color:white;
+font-family: Arial, Helvetica, sans-serif;font-size: 150%;    
+
+background: #b266ff;
+}
+
+.content{
+height:100%;    
+overflow:scroll;
+ 
+}
+
+
+#left{
+position: absolute;
+top:6px;    
+left:10px;
+    
+ 
+}
+
+
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #ff9999;
+}
+
+.active {
+    background-color: #4CAF50;
+}
