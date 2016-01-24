@@ -14,9 +14,55 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <title>JSP Page</title>
+        <script>
+            $(document).ready(function () {
+                $("#cfmpw").change(function () {
+                    var pw = $( "#pw" ).val();
+                    var cfmpw = $( "#cfmpw" ).val();
+                    if (pw == cfmpw) {
+                        return true;
+                    } else {
+                        alert("You have entered an Password which is not same Password on the Reset Password !");
+                        cfmpw.focus();
+                        return false;
+                    }
+                });
+                $("#submit").change(function () {
+                    var pw = $( "#pw" ).val();
+                    var cfmpw = $( "#cfmpw" ).val();
+                    if (pw == cfmpw) {
+                        return true;
+                    } else {
+                        alert("You have entered an Password which is not same Password on the Reset Password !");
+                        cfmpw.focus();
+                        return false;
+                    }
+                });
+                $( "setfrm" ).submit(function( event ) {
+                     var pw = $( "#pw" ).val();
+                    var cfmpw = $( "#cfmpw" ).val();
+                    if (pw == cfmpw) {
+                        return true;
+                    } else {
+                        alert("You have entered an Password which is not same Password on the Reset Password !");
+                        cfmpw.focus();
+                        return false;
+                    }
+  if ( $( "input:first" ).val() === "correct" ) {
+    $( "span" ).text( "Validated..." ).show();
+    return;
+  }
+ 
+  $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+  event.preventDefault();
+});
+            });
+        </script>
     </head>
     <body>
+        
         <%
             String dbUser = this.getServletContext().getInitParameter("dbUsername");
             String dbPassword = this.getServletContext().getInitParameter("dbPassword");
@@ -37,7 +83,7 @@
 
                     MemberBean member = (MemberBean) memberData.get(0);
         %>
-        <form action="memberSeting" method="post">
+        <form action="memberSeting" method="post" id="setfrm">
             <input type="hidden" name="action" value="updateMember">
             <table>
                 <tr>
@@ -50,26 +96,15 @@
                     <td> <%= user.getUserName()%> </td>
                 </tr>
                 <tr>
-                    <th>Password:&nbsp;</th>
+                    <th> Reset Password:&nbsp;</th>
                     <td><input type="password" name="pw" pattern=".{8,}" title="8 or more characters" id="pw"></td>
                 </tr>
                 <div id="cfmpwin">
                     <tr>
                         <th> Confirm Password: &nbsp; </th>
-                        <td> <input type = "password" name = "cfmpw" pattern = ".{8,}" title="8 or more characters" id = "cfmpw" > </td>
+                        <td> <input type = "password" name = "cfmpw" pattern = ".{8,}" title="8 or more characters" id = "cfmpw"> </td>
                     </tr>
                 </div>
-                <script>
-                    $(document).ready(function () {
-                        $("#cfmpwin").hide();
-                        function displayVals() {
-                             $("#cfmpwin").show();
-                        }
-
-                        $("#pw").change(displayVals);
-                        displayVals();
-                    });
-                </script>
                 <tr>
                     <th>Nick Name:&nbsp;</th>
                     <td><input type="text" name="nickname" required value="<%=member.getNickName()%>"/></td>
@@ -128,7 +163,7 @@
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit"/><input type="reset"/></td>
+                    <td><input type="submit" id="submit"/><input type="reset"/></td>
                 </tr>
             </table>
         </form>
@@ -140,5 +175,6 @@
         <div>Please login!</div>
         <%            }
         %>
+
     </body>
 </html>

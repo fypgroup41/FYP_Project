@@ -90,6 +90,18 @@
                 z-index: 10;
                 transform: translate(-50%, -50%);
             }
+            .caption>div{
+                
+                //left:-10px;
+                position:absolute;
+                top:20%;
+                left:-28%;
+                margin: 0 auto;
+                z-index: 10;
+                //transform: translate(-50%, -50%);
+            }
+            
+            
             #hover-cap-4col .thumbnail {
                 position:relative;
                 overflow:hidden;
@@ -154,7 +166,15 @@
     <ul class="thumbnails" id="hover-cap-4col" class="tableShow" >
         <div class="thumbnail" id="<%= act.getActivitiesID()%>">
             <div class="caption">
-                <i class="fa fa-info fa-3x"></i>
+                <%--<i class="fa fa-info fa-3x"></i>--%>
+                <div>
+                    <ul>
+                        <ol>Deadline": <%= act.getDeadline() %></ol>
+                        <ol>Venue: <%= act.getVenue() %></ol>
+                        <ol>Quota: <%= act.getQuota() %></ol>
+                        <ol>Remain: <%= act.getRemain() %></ol>
+                    </ul>
+                </div>
 
             </div>
 
@@ -166,7 +186,7 @@
             <div style="background-color:yellow;text-align:center" id="A"><img src="img/activities/<%= act.getActivitiesID()%>.jpg" class="photo" title="<%= act.getName()%>"></img>
 
 
-                <br><span style="text-align:center"><%= act.getName()%></span><br> <span style="text-align:center;color:red;font-size:large"><%= sdf.format(date)%></div>
+                <br><span style="text-align:center; font-weight:bold; font-size: large; "><%= act.getName()%></span><br><span style="text-align:center">Running Date: </span><br> <span style="text-align:center;color:red;font-size:large"><%= sdf.format(date)%></div>
 
         </div>
     </li>     

@@ -138,7 +138,7 @@
         <div id="Rheader">
                 <ul style="height:62px;list-style-type: none;margin: 0;padding: 0;overflow: hidden;background-color: #ff4d4d;">
                    <li>&nbsp;<img src="img/logo.png" style="height:60px;cursor: pointer; left:10px;"  onclick="window.location.href = '<%=getServletContext().getContextPath() + "/"%>main.jsp'">&nbsp;</li>
-                    <li id="activities"><a href="#news">activities</a></li> 
+                    <li id="activities"><a href="#news">Activities</a></li> 
                    <li id="news"><a href="#news">News</a></li>
                     <li id="wall"><a href="#contact">Sharing Wall</a></li>
                     <li id="actRec"><a href="#contact">Activity Record</a></li>
@@ -147,8 +147,8 @@
  <%
                 if (session.getAttribute("userInfo") == null) {
  %>                        
-                      <li id="register">Register</li>
-                      <li id="login">Login&nbsp;</li>
+ <li id="register"><a href="#register">Register</a></li>
+ <li id="login"><a href="#login">Login&nbsp;</a></li>
                     </ul>
                   </ul>
         </div>
