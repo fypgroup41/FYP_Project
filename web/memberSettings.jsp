@@ -51,12 +51,12 @@
                 </tr>
                 <tr>
                     <th>Password:&nbsp;</th>
-                    <td><input type="password" name="pw" pattern=".{8,}" id="pw"></td>
+                    <td><input type="password" name="pw" pattern=".{8,}" title="8 or more characters" id="pw"></td>
                 </tr>
                 <div id="cfmpwin">
                     <tr>
                         <th> Confirm Password: &nbsp; </th>
-                        <td> <input type = "password" name = "cfmpw" pattern = ".{8,}" id = "cfmpw" > </td>
+                        <td> <input type = "password" name = "cfmpw" pattern = ".{8,}" title="8 or more characters" id = "cfmpw" > </td>
                     </tr>
                 </div>
                 <script>

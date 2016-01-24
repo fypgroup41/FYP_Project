@@ -37,7 +37,7 @@
                     $(".alert").css("display", "block");
                     id = $(this).attr('id');
                     $("#closeButton").css("visibility", "visible");
-                   $("#closebackground").css("visibility", "visible");
+                 //  $("#closebackground").css("visibility", "visible");
                     $("#indexLog").css("visibility", "visible");
                     $("#closeButton").load("activityDetails.jsp?id=" + id);
                 });

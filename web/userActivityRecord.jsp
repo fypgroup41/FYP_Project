@@ -35,7 +35,7 @@
                             + " where memberID = '" + userM.getUserID() + "'");
         %>
         <h1>Activity Record</h1>
-        <table>
+        <table class="table">
             <tr>
                 <th>Activity Record ID&nbsp;</th>
                 <th>Activity ID&nbsp;</th>
