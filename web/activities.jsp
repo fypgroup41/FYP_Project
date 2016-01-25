@@ -37,7 +37,7 @@
                     $(".alert").css("display", "block");
                     id = $(this).attr('id');
                     $("#closeButton").css("visibility", "visible");
-                 //  $("#closebackground").css("visibility", "visible");
+                    //  $("#closebackground").css("visibility", "visible");
                     $("#indexLog").css("visibility", "visible");
                     $("#closeButton").load("activityDetails.jsp?id=" + id);
                 });
@@ -63,8 +63,7 @@
             }
             th{
                 color:blue;
-                text-decoration: underline; 
-                cursor:pointer;
+                text-decoration: underline;                 
             }
             table{
                 background-color: #FF9900;
@@ -81,7 +80,7 @@
 
             }    
             .caption>i{
-                
+
                 left:-10px;
                 position:absolute;
                 top:50%;
@@ -91,7 +90,7 @@
                 transform: translate(-50%, -50%);
             }
             .caption>div{
-                
+
                 //left:-10px;
                 position:absolute;
                 top:20%;
@@ -100,8 +99,8 @@
                 z-index: 10;
                 //transform: translate(-50%, -50%);
             }
-            
-            
+
+
             #hover-cap-4col .thumbnail {
                 position:relative;
                 overflow:hidden;
@@ -112,14 +111,6 @@
         </style>
     </head>
     <body>
-
-        <!-- Alert  -->
-        <div class="alert alert-warning alert-dismissible fade in" role="alert" style="display:none">
-            <button type="button" class="close"  >
-                <span>&times;</span>
-            </button>
-            <strong>Activity</strong> Added this Activity in your timetable
-        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -169,10 +160,10 @@
                 <%--<i class="fa fa-info fa-3x"></i>--%>
                 <div>
                     <ul>
-                        <ol>Deadline": <%= act.getDeadline() %></ol>
-                        <ol>Venue: <%= act.getVenue() %></ol>
-                        <ol>Quota: <%= act.getQuota() %></ol>
-                        <ol>Remain: <%= act.getRemain() %></ol>
+                        <ol><strong>Deadline: <%= act.getDeadline()%></strong></ol>
+                        <ol><strong>Venue: <%= act.getVenue()%></strong></ol>
+                        <ol><strong>Quota: <%= act.getQuota()%></strong></ol>
+                        <ol><strong>Remain: <%= act.getRemain()%></strong></ol>
                     </ul>
                 </div>
 

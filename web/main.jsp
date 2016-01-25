@@ -157,7 +157,7 @@
             } else {
             %>
                                      
-                      <li> <%
+                      <li style="line-height:2"> <%
                         if (session.getAttribute("userInfo") != null) {
                             UserBean user = (UserBean) session.getAttribute("userInfo");
                             out.println("" + session.getAttribute("userName"));
@@ -193,13 +193,7 @@
                 </div>
             </div>--%>
           <div class="col-9" id="contentPage" style="background-color: Cornsilk;  padding: 75px 18% 50px 50px;">
-                <div class="content">
-
-                    <h1>Main Content</h1>
-                    <p>Maybe set iframe to change content</p>
-
-
-                </div>
+                  <h1>Main Content</h1>
             </div>
           
             <div class="col-2 right">

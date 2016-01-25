@@ -41,7 +41,7 @@
     });
 </script>
 
-<link rel="stylesheet" type="text/css" href="css/activityDetsils.css">
+<link rel="stylesheet" type="text/css" href="css/activityDetails.css">
 
 <body>
     <div id="details">

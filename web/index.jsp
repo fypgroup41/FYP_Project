@@ -18,16 +18,11 @@
         <title>JSP Page</title>
     </head>
     <body>
+      <%
 
-        <a href="Companyuser_regform.jsp">Companyuser_regform</a><br>
-        <a href="Companyuser_regform.jsp">Companyuser_regform</a><br>
-        <a href="Generaluser_regform.jsp">Generaluser_regform</a><br>
-        <a href="Reg_Redirect.jsp">Reg_Redirect</a><br>
-        <a href="login.jsp">login</a><br>
-        <a href="main.jsp">main</a><br>
-        <a href="showTable.jsp">showTable</a><br>
-        
-
+            String redirectURL = "main.jsp";
+            response.sendRedirect(redirectURL);
+        %>
 
     </body>
 </html>
